@@ -1,9 +1,12 @@
 import React from 'react';
 type Props = {
   label: string;
+  value: string;
+  setValue: any;
+  type: string;
 };
 const InputForm = (props: Props) => {
-  const { label } = props;
+  const { label, value, type, setValue } = props;
   return (
     <div>
       <label htmlFor="phone" className="text-sx">
@@ -13,6 +16,10 @@ const InputForm = (props: Props) => {
         type="text"
         id="phone"
         className="outline-none bg-[#e8f0fe] p-2 rounded-md w-full"
+        value={value}
+        onChange={(e) =>
+          setValue((prev: any) => ({ ...prev, [type]: e.target.value }))
+        }
       />
     </div>
   );

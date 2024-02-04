@@ -10,7 +10,6 @@ const Header = () => {
 
   const goLogin = React.useCallback(
     (isRegister?: boolean) => {
-      console.log(isRegister);
       navigate(paths.LOGIN, { state: { isRegister } });
     },
     [navigate]
