@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header, Navigation } from '~/containers/Public';
+import { Header, Navigation } from '../../containers/Public';
 
 const Home = () => {
   return (

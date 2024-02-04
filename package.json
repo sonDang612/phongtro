@@ -20,15 +20,14 @@
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^3.1.0",
-    "thunk": "^0.0.1",
-    "typescript": "^5.3.3",
+    "typescript": "^3.2.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -49,9 +48,6 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-module-resolver": "^5.0.0",
-    "customize-cra": "^1.0.0",
-    "react-app-rewired": "^2.2.1",
     "tailwindcss": "^3.4.1"
   }
 }

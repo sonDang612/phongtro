@@ -1,4 +1,4 @@
-import * as authServices from '~/services/auth';
+import * as authServices from '../../services/auth';
 import actionTypes from './actionTypes';
 
 export const register = (payload: any) => async (dispatch: any) => {

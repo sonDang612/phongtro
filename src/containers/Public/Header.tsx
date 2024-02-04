@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '~/assets/logowithoutbg.png';
-import { Button } from '~/components';
-import { paths } from '~/utils/constants';
-import icons from '~/utils/icons';
+import logo from '../../assets/logowithoutbg.png';
+import { Button } from '../../components';
+import { paths } from '../../utils/constants';
+import icons from '../../utils/icons';
 const { AiOutlinePlusCircle } = icons;
 const Header = () => {
   const navigate = useNavigate();

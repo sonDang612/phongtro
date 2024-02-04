@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { Button, InputForm } from '~/components';
-import * as actions from '~/store/actions/auth';
+import { Button, InputForm } from '../../components';
+import * as actions from '../../store/actions/auth';
 const Login = () => {
   const location = useLocation();
   const [payload, setPayload] = React.useState({
