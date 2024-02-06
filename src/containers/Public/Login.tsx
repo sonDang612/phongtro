@@ -1,26 +1,50 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, InputForm } from '../../components';
 import * as actions from '../../store/actions/auth';
+import Swal from 'sweetalert2';
+const initialPayload = {
+  name: '',
+  phone: '',
+  password: '',
+};
 const Login = () => {
   const location = useLocation();
-  const [payload, setPayload] = React.useState({
-    name: '',
-    phone: '',
-    password: '',
-  });
+  const [payload, setPayload] = React.useState(initialPayload);
+  const navigate = useNavigate();
+  const { isLoggedIn, msg, update } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch<any>();
   const [isRegister, setIsRegister] = React.useState(
     location.state?.isRegister
   );
   const handleSubmit = async () => {
-    dispatch(actions.register(payload));
+    const finalPayload = isRegister
+      ? payload
+      : {
+          phone: payload.phone,
+          password: payload.password,
+        };
+    isRegister
+      ? dispatch(actions.register(finalPayload))
+      : dispatch(actions.login(finalPayload));
   };
 
   React.useEffect(() => {
     setIsRegister(location.state?.isRegister);
   }, [location.state?.isRegister]);
+
+  React.useEffect(() => {
+    setPayload(initialPayload);
+  }, [isRegister]);
+
+  React.useEffect(() => {
+    if (isLoggedIn) navigate('/');
+  }, [isLoggedIn, navigate]);
+
+  React.useEffect(() => {
+    msg && Swal.fire('Oop !', msg, 'error');
+  }, [msg, update]);
 
   return (
     <div className="bg-white w-[600px] p-[30px] pb-[100px] rounded-md shadow-sm">
@@ -33,20 +57,21 @@ const Login = () => {
             label="HỌ TÊN"
             value={payload.name}
             setValue={setPayload}
-            type="name"
+            keyPayload="name"
           />
         )}
         <InputForm
           label="SỐ ĐIỆN THOẠI"
           value={payload.phone}
           setValue={setPayload}
-          type="phone"
+          keyPayload="phone"
         />
         <InputForm
           label="MẬT KHẨU"
           value={payload.password}
           setValue={setPayload}
           type="password"
+          keyPayload="password"
         />
         <Button
           text={isRegister ? 'Đăng ký' : 'Đăng nhập'}

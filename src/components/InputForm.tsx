@@ -2,23 +2,29 @@ import React from 'react';
 type Props = {
   label: string;
   value: string;
-  setValue: any;
-  type: string;
+  setValue?: any;
+  keyPayload?: string;
+  type?: string;
 };
 const InputForm = (props: Props) => {
-  const { label, value, type, setValue } = props;
+  const { label, value, keyPayload, setValue, type } = props;
   return (
     <div>
       <label htmlFor="phone" className="text-sx">
         {label}
       </label>
       <input
-        type="text"
+        type={type || 'text'}
         id="phone"
         className="outline-none bg-[#e8f0fe] p-2 rounded-md w-full"
         value={value}
         onChange={(e) =>
-          setValue((prev: any) => ({ ...prev, [type]: e.target.value }))
+          keyPayload &&
+          setValue &&
+          setValue((prev: any) => ({
+            ...prev,
+            [keyPayload]: e.target.value,
+          }))
         }
       />
     </div>

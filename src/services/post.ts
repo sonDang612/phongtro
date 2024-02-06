@@ -1,12 +1,11 @@
 import axiosConfig from '../axiosConfig';
 
-export const apiRegister = (payload: any) =>
+export const apiGetPosts = () =>
   new Promise(async (resolve, reject) => {
     try {
       const response = await axiosConfig({
-        method: 'post',
-        url: '/api/v1/auth/register',
-        data: payload,
+        method: 'get',
+        url: '/api/v1/post/all',
       });
       resolve(response);
     } catch (error) {
@@ -14,13 +13,12 @@ export const apiRegister = (payload: any) =>
     }
   });
 
-export const apiLogin = (payload: any) =>
+export const apiGetPostsLimit = (page: number) =>
   new Promise(async (resolve, reject) => {
     try {
       const response = await axiosConfig({
-        method: 'post',
-        url: '/api/v1/auth/login',
-        data: payload,
+        method: 'get',
+        url: `/api/v1/post/limit?page=${page}`,
       });
       resolve(response);
     } catch (error) {

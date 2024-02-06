@@ -10,9 +10,11 @@ module.exports = {
         primary: '#F5F5F5',
         secondary1: '#1266dd',
         secondary2: '#f23859',
+        modalOverlay: 'rgba(0, 0, 0, 0.5)',
       },
       maxWidth: {
         600: '600px',
+        1100: '1100px',
       },
     },
   },
