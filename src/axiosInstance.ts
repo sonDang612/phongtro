@@ -1,11 +1,15 @@
 import axios from 'axios';
+import getToken from './utils/getToken';
 
-const instance = axios.create({
+const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
-instance.interceptors.request.use(
-  function (config) {
+axiosInstance.interceptors.request.use(
+  function (config: any) {
+    config.headers = {
+      authorization: `Bear ${getToken()}`,
+    };
     return config;
   },
   function (error) {
@@ -14,7 +18,7 @@ instance.interceptors.request.use(
   }
 );
 
-instance.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   function (response) {
     return response;
   },
@@ -24,4 +28,4 @@ instance.interceptors.response.use(
   }
 );
 
-export default instance;
+export default axiosInstance;

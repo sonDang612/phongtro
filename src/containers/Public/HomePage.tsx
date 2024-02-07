@@ -9,6 +9,7 @@ import { Search } from '.';
 import useCategories from 'src/react-query/useCategories';
 import usePrices from 'src/react-query/usePrices';
 import useAreas from 'src/react-query/useAreas';
+import HeaderText from './HeaderText';
 
 const HomePage = () => {
   const { data: categories } = useCategories();
@@ -19,7 +20,7 @@ const HomePage = () => {
     <div className="w-full flex flex-col gap-3">
       <Search />
       <div className="items-center justify-center flex flex-col">
-        <h1 className="text-[28px] font-bold">{text.HOME_TITLE}</h1>
+        <HeaderText />
         <p className="text-[14.5px] text-[#65676b]">{text.HOME_DESCRIPTION}</p>
         <Provinces />
       </div>

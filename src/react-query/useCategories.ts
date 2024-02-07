@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
+import axiosInstance from 'src/axiosInstance';
 import { Category } from 'src/types';
-import * as categoryService from '../services/category';
 import queryKeys from './queryKey';
 
 const fetchCategories = async () => {
-  const response = (await categoryService.apiGetCategories()) as any;
+  const response = await axiosInstance.get('/api/v1/category/all');
   return response.data.response;
 };
 

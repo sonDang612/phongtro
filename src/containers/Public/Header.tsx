@@ -1,17 +1,18 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import useCurrentUser from 'src/react-query/useCurrentUser';
 import logo from '../../assets/logowithoutbg.png';
 import { Button } from '../../components';
+import * as actions from '../../store/actions/auth';
 import { paths } from '../../utils/constants';
 import icons from '../../utils/icons';
-import * as actions from '../../store/actions/auth';
-import { useDispatch, useSelector } from 'react-redux';
 const { AiOutlinePlusCircle } = icons;
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state: any) => state.auth);
-
+  const { data: user } = useCurrentUser();
   const goLogin = React.useCallback(
     (isRegister?: boolean) => {
       navigate(paths.LOGIN, { state: { isRegister } });
@@ -32,11 +33,28 @@ const Header = () => {
         <div className="flex items-center gap-1">
           {isLoggedIn ? (
             <>
-              <small>ten</small>
+              <div className="flex flex-row gap-[10px] items-center mr-[30px]">
+                <img
+                  src="/default-user.png"
+                  alt="avatar-user"
+                  className="rounded-full size-[40px]"
+                />
+                <div>
+                  <small className="text-[16.8px] text-[#333]">
+                    Xin chào&nbsp;
+                    <small className="font-bold text-[16.8px] text-[#333]">
+                      {user?.name}
+                    </small>
+                  </small>
+                  <p className="text-[14px] text-[#333] text-center">
+                    SĐT: {user?.phone}
+                  </p>
+                </div>
+              </div>
               <Button
-                text="Đăng xuất"
+                text="Quản lý tài khoản"
                 textColor="text-white"
-                bgColor="bg-red-700"
+                bgColor="bg-secondary1"
                 onClick={() => dispatch(actions.logout())}
               />
               <Button

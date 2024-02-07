@@ -63,7 +63,7 @@ const Post = (props: Props) => {
             {post.attributes.price}
           </span>
           <span className="text-[14px] text-[#333]">35m²</span>
-          <span className="text-[14px] text-[#333]">{post.address}</span>
+          <span className="text-[14px] text-[#333] ">{post.address}</span>
         </div>
         <div className="text-[14px] text-[#8a8d91] mt-[20px] limit-text-length">
           {post.description}

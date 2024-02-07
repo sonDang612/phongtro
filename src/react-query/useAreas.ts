@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
+import axiosInstance from 'src/axiosInstance';
 import { Area } from 'src/types';
-import * as areaService from '../services/area';
 import queryKeys from './queryKey';
 
 const fetchAreas = async () => {
-  const response = (await areaService.apiGetAreas()) as any;
-  return response?.data.response;
+  const response = await axiosInstance.get('/api/v1/area/all');
+  return response.data.response;
 };
 
 const useAreas = () => {

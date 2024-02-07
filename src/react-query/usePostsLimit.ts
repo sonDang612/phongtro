@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import * as postService from '../services/post';
-import queryKeys from './queryKey';
+import axiosInstance from 'src/axiosInstance';
 import { Post } from 'src/types';
+import queryKeys from './queryKey';
 
 const fetchPostsLimit = async (page: number, query?: object) => {
-  const response = (await postService.apiGetPostsLimit(page, query)) as any;
+  const response = await axiosInstance.get('/api/v1/post/limit', {
+    params: { page, ...query },
+  });
   return {
     data: response.data.response.rows,
     totalPages: response.data.totalPages,

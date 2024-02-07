@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import * as postService from '../services/post';
-import queryKeys from './queryKey';
+import axiosInstance from 'src/axiosInstance';
 import { Post } from 'src/types';
+import queryKeys from './queryKey';
 
 const fetchNewestPosts = async () => {
-  const response = (await postService.apiGetNewestPosts()) as any;
+  const response = await axiosInstance.get('/api/v1/post/newest-posts');
   return response?.data.response.rows;
 };
 

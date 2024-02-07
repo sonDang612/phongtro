@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
+import axiosInstance from 'src/axiosInstance';
 import { Price } from 'src/types';
-import * as priceService from '../services/price';
 import queryKeys from './queryKey';
 
 const fetchPrices = async () => {
-  const response = (await priceService.apiGetPrices()) as any;
+  const response = await axiosInstance.get('/api/v1/prices');
   return response?.data.response;
 };
 

@@ -9,12 +9,15 @@ const ListPosts = () => {
   const priceCode = params.get('priceCode');
   const areaCode = params.get('areaCode');
   const categoryCode = params.get('categoryCode');
+  const provinceCode = params.get('provinceCode');
+
   const { data: postPages } = usePostsLimit({
     page,
     query: {
       priceCode,
       categoryCode,
       areaCode,
+      provinceCode,
     },
   });
   const posts = postPages?.data;
@@ -65,6 +68,7 @@ const ListPosts = () => {
             priceCode,
             areaCode,
             categoryCode,
+            provinceCode,
           })}
         />
       )}

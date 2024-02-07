@@ -26,6 +26,11 @@ export type Category = {
   label: string;
 };
 
+export type Province = {
+  code: string;
+  value: string;
+};
+
 export type Price = {
   code: string;
   value: string;
@@ -34,4 +39,13 @@ export type Price = {
 export type Area = {
   code: string;
   value: string;
+};
+
+export type User = {
+  id: string;
+  name: string;
+  phone: string;
+  zalo?: string;
+  fbUrl?: string;
+  avatar?: string;
 };

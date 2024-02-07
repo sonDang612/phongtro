@@ -8,6 +8,7 @@ import useAreas from 'src/react-query/useAreas';
 import usePrices from 'src/react-query/usePrices';
 import { text } from 'src/utils/constants';
 import { Search } from '.';
+import HeaderText from './HeaderText';
 
 const RentalRoom = () => {
   const { data: prices } = usePrices();
@@ -17,7 +18,7 @@ const RentalRoom = () => {
     <div className="w-full flex flex-col gap-3">
       <Search />
       <div className="items-center justify-center flex flex-col">
-        <h1 className="text-[28px] font-bold">{text.HOME_TITLE}</h1>
+        <HeaderText />
         <p className="text-[14.5px] text-[#65676b]">{text.HOME_DESCRIPTION}</p>
         <Provinces />
       </div>

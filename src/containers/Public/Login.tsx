@@ -1,9 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, InputForm } from '../../components';
-import * as actions from '../../store/actions/auth';
+import useLogin from 'src/react-query/useLogin';
+import useRegister from 'src/react-query/useRegister';
 import Swal from 'sweetalert2';
+import { Button, InputForm } from '../../components';
 const initialPayload = {
   name: '',
   phone: '',
@@ -14,7 +15,8 @@ const Login = () => {
   const [payload, setPayload] = React.useState(initialPayload);
   const navigate = useNavigate();
   const { isLoggedIn, msg, update } = useSelector((state: any) => state.auth);
-  const dispatch = useDispatch<any>();
+  const { mutate: login } = useLogin();
+  const { mutate: register } = useRegister();
   const [isRegister, setIsRegister] = React.useState(
     location.state?.isRegister
   );
@@ -25,9 +27,7 @@ const Login = () => {
           phone: payload.phone,
           password: payload.password,
         };
-    isRegister
-      ? dispatch(actions.register(finalPayload))
-      : dispatch(actions.login(finalPayload));
+    isRegister ? register(finalPayload as any) : login(finalPayload);
   };
 
   React.useEffect(() => {
