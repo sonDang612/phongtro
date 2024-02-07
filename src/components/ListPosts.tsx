@@ -2,14 +2,26 @@ import { useSearchParams } from 'react-router-dom';
 import { Pagination } from 'src/containers/Public';
 import usePostsLimit from 'src/react-query/usePostsLimit';
 import { Button, Post } from '.';
+import removeNullFromObject from 'src/utils/removeNullFromObject';
 const ListPosts = () => {
   const [params] = useSearchParams();
   const page = params.get('page') ? Number(params.get('page')) : 0;
-  const { data: postPages } = usePostsLimit({ page });
+  const priceCode = params.get('priceCode');
+  const areaCode = params.get('areaCode');
+  const categoryCode = params.get('categoryCode');
+  const { data: postPages } = usePostsLimit({
+    page,
+    query: {
+      priceCode,
+      categoryCode,
+      areaCode,
+    },
+  });
   const posts = postPages?.data;
+
   return (
     <>
-      <div className="w-full bg-white pt-[20px] rounded-md">
+      <div className="w-full bg-white pt-[20px] rounded-md border">
         <div className="flex items-center justify-between px-[20px]">
           <h4 className="text-xl font-semibold">Danh sách tin đăng</h4>
           <span>Cập nhật: 12:05 6/2/2024</span>
@@ -31,13 +43,31 @@ const ListPosts = () => {
             padding="px-[10px] py-[5px]"
           />
         </div>
-        <div className="gap-5 flex flex-col ">
-          {posts?.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
+        <div className="flex flex-col px-[20px]">
+          {!posts || posts.length === 0 ? (
+            <div className="h-[100px] flex items-center justify-center text-[18px] font-bold">
+              Không tìm thấy bài phù hợp!!!!
+            </div>
+          ) : (
+            <>
+              {posts?.map((post, index) => (
+                <Post key={post.id} post={post} index={index} />
+              ))}
+            </>
+          )}
         </div>
       </div>
-      {posts && <Pagination length={postPages.totalPages} currentPage={page} />}
+      {posts && (
+        <Pagination
+          length={postPages.totalPages}
+          currentPage={page}
+          searchParams={removeNullFromObject({
+            priceCode,
+            areaCode,
+            categoryCode,
+          })}
+        />
+      )}
     </>
   );
 };

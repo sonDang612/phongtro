@@ -1,24 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { apiGetCategories } from 'src/services/category';
+import useCategories from 'src/react-query/useCategories';
 
 const Navigation = () => {
-  const [categories, setCategories] = React.useState([]);
-
-  React.useEffect(() => {
-    const fetchCategories = async () => {
-      const response = (await apiGetCategories()) as any;
-
-      if (response?.data.err === 0) {
-        setCategories(response.data?.response);
-      }
-    };
-
-    fetchCategories();
-  }, []);
+  const { data: categories } = useCategories();
 
   return (
-    <div className="w-full flex justify-center items-center h-[40px] text-white bg-secondary1">
+    <div className="w-full flex justify-center items-center h-[40px] text-white bg-secondary1 sticky-header">
       <div className="w-3/4 flex flex-row">
         <NavLink
           to={'/'}
@@ -30,10 +18,10 @@ const Navigation = () => {
         >
           Trang chủ
         </NavLink>
-        {categories.map((category: any, index) => (
+        {categories?.map((category, index) => (
           <NavLink
             key={index}
-            to={category.label}
+            to={`/${category.label}?categoryCode=${category.code}&page=0`}
             className={({ isActive }) =>
               `${
                 isActive ? 'bg-red-500' : 'transparent'

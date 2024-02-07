@@ -9,3 +9,4 @@ export { default as RentalRoom } from './RentalRoom';
 export { default as HomePage } from './HomePage';
 export { default as Search } from './Search';
 export { default as Pagination } from './Pagination';
+export { default as PostDetails } from './PostDetails';

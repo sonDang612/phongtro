@@ -1,8 +1,20 @@
+import {
+  ItemSlideBar,
+  ListPosts,
+  Provinces,
+  NewestPosts,
+} from 'src/components';
 import { text } from 'src/utils/constants';
 import { Search } from '.';
-import { ListPosts, SlideBar, Provinces } from 'src/components';
+import useCategories from 'src/react-query/useCategories';
+import usePrices from 'src/react-query/usePrices';
+import useAreas from 'src/react-query/useAreas';
 
 const HomePage = () => {
+  const { data: categories } = useCategories();
+  const { data: prices } = usePrices();
+  const { data: areas } = useAreas();
+
   return (
     <div className="w-full flex flex-col gap-3">
       <Search />
@@ -15,8 +27,19 @@ const HomePage = () => {
         <div className="w-[70%]">
           <ListPosts />
         </div>
-        <div className="w-[30%] border border-red-500">
-          <SlideBar />
+        <div className="w-[30%] flex flex-col gap-4 justify-start items-center">
+          <ItemSlideBar content={categories} title="Danh mục cho thuê" />
+          <ItemSlideBar
+            content={prices}
+            title="Xem theo giá"
+            type="priceCode"
+          />
+          <ItemSlideBar
+            content={areas}
+            title="Xem theo diện tích"
+            type="areaCode"
+          />
+          <NewestPosts />
         </div>
       </div>
     </div>

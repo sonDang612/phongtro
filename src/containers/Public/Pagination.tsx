@@ -1,22 +1,25 @@
 import React from 'react';
-import { createSearchParams, useNavigate } from 'react-router-dom';
+import { createSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import { PageNumber } from 'src/components';
 import icons from 'src/utils/icons';
 type Props = {
   length: number;
   currentPage: number;
+  searchParams?: object;
 };
 
 const { GrLinkNext, GrLinkPrevious } = icons;
 const Pagination = (props: Props) => {
-  const { length, currentPage } = props;
+  const { length, currentPage, searchParams } = props;
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChangePage = (pageNumber: number) => {
     navigate({
-      pathname: '/',
+      pathname: location.pathname,
       search: createSearchParams({
         page: `${pageNumber}`,
+        ...searchParams,
       }).toString(),
     });
   };
@@ -28,14 +31,19 @@ const Pagination = (props: Props) => {
     if (pageNumber === 0 && type === 'prev') return undefined;
     if (pageNumber === length - 1 && type === 'next') return undefined;
     navigate({
-      pathname: '/',
+      pathname: location.pathname,
       search: createSearchParams({
         page: `${type === 'next' ? pageNumber + 1 : pageNumber - 1}`,
+        ...searchParams,
       }).toString(),
     });
   };
 
   const handlePageValues = () => {
+    if (length === 1 || length === 0) return [0];
+    if (length === 2) return [0, 1];
+    if (length === 3) return [0, 1, 2];
+    if (length === 4) return [0, 1, 2, 3];
     if (currentPage === 0) {
       return [
         currentPage,
@@ -88,7 +96,7 @@ const Pagination = (props: Props) => {
         value={<GrLinkPrevious size={20} />}
         onClick={() => handleChangePageByType(currentPage, 'prev')}
       />
-      {currentPage > 4 && (
+      {currentPage > 2 && (
         <PageNumber
           selected={false}
           value={'...'}

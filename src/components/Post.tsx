@@ -1,21 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Post as PostType } from 'src/types';
+import { formatVietnameseToString } from 'src/utils/formatVietnameseToString';
 import icons from 'src/utils/icons';
 const { GrStar, BsBookmarkStarFill, RiHeartLine, RiHeartFill } = icons;
 type Props = {
   post: PostType;
+  index: number;
 };
 const Post = (props: Props) => {
-  const { post } = props;
+  const { post, index } = props;
   const [isOverHeart, setIsOverHeart] = React.useState(false);
   const postImages = JSON.parse(`${post.images.image}`);
+  const linkTo = `/chi-tiet/${formatVietnameseToString(post.title)}/${post.id}`;
+
   return (
-    <div className="w-full md:flex px-[20px] py-[15px] gap-[15px] border border-t-[#E13427] border-b-[#E13427] bg-[#fff9f3]">
-      <div className="flex w-full md:w-[40%] relative">
+    <div
+      className={`w-full md:flex py-[15px] gap-[15px] border border-l-0 border-r-0 ${
+        index !== 0 && 'border-t-0'
+      }`}
+    >
+      <Link to={linkTo} className="flex w-full md:w-[40%] relative">
         <img
           src={postImages[0]}
           alt="post"
-          className="w-full h-[240px] object-cover cursor-pointer"
+          className="w-full h-[240px] object-cover cursor-pointer rounded-md"
         />
         <span className="z-10 absolute bottom-[8px] left-[5px] bg-modalOverlay text-white rounded-md px-[5px] py-[3px] text-[12.6px]">
           {postImages.length || 0} ảnh
@@ -31,7 +40,7 @@ const Post = (props: Props) => {
             <RiHeartLine size={24} />
           )}
         </span>
-      </div>
+      </Link>
       <div className="w-full md:w-[60%]">
         <div className="flex justify-between gap-4 w-full items-center">
           <div className="text-red-600 font-bold text-[14px] hover:underline">
@@ -40,7 +49,9 @@ const Post = (props: Props) => {
             <GrStar className="star-item" size={18} color="yellow" />
             <GrStar className="star-item" size={18} color="yellow" />
             <GrStar className="star-item" size={18} color="yellow" />
-            {post.title}
+            <Link to={linkTo} className="limit-text-title-length">
+              {post.title}
+            </Link>
           </div>
           <div className="w-[10%] flex justify-end">
             <BsBookmarkStarFill size={24} color="orange" />

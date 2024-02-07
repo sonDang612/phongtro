@@ -7,3 +7,6 @@ export { default as Post } from './Post';
 export { default as Provinces } from './Provinces';
 export { default as SlideBar } from './SlideBar';
 export { default as PageNumber } from './PageNumber';
+export { default as ItemSlideBar } from './ItemSlideBar';
+export { default as NewestPosts } from './NewestPosts';
+export { default as Modal } from './Modal';

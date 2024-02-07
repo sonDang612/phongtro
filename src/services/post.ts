@@ -13,12 +13,29 @@ export const apiGetPosts = () =>
     }
   });
 
-export const apiGetPostsLimit = (page: number) =>
+export const apiGetPostsLimit = (page: number, query?: object) =>
   new Promise(async (resolve, reject) => {
     try {
       const response = await axiosConfig({
         method: 'get',
-        url: `/api/v1/post/limit?page=${page}`,
+        url: `/api/v1/post/limit`,
+        params: {
+          page,
+          ...query,
+        },
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+export const apiGetNewestPosts = () =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axiosConfig({
+        method: 'get',
+        url: '/api/v1/post/newest-posts',
       });
       resolve(response);
     } catch (error) {

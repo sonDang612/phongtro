@@ -19,3 +19,19 @@ export type Post = {
     zalo: string;
   };
 };
+
+export type Category = {
+  code: string;
+  value: string;
+  label: string;
+};
+
+export type Price = {
+  code: string;
+  value: string;
+};
+
+export type Area = {
+  code: string;
+  value: string;
+};
