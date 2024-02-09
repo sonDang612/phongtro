@@ -29,10 +29,7 @@ function App() {
             <Route path={paths.CHO_THUE_MAT_BANG} element={<RentalSpace />} />
             <Route path={paths.CHO_THUE_PHONG_TRO} element={<RentalRoom />} />
             <Route path={paths.NHA_CHO_THUE} element={<RentalHouse />} />
-            <Route
-              path={paths.POST_DETAILS_TITLE_ID}
-              element={<PostDetails />}
-            />
+            <Route path={paths.POST_DETAILS} element={<PostDetails />} />
           </Route>
           <Route path={paths.SYSTEM} element={<System />}>
             <Route path={paths.CREATE_POST} element={<CreatePost />} />

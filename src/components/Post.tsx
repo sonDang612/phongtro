@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Post as PostType } from 'src/types';
-import { formatVietnameseToString } from 'src/utils/formatVietnameseToString';
 import icons from 'src/utils/icons';
 const { GrStar, BsBookmarkStarFill, RiHeartLine, RiHeartFill } = icons;
 type Props = {
@@ -14,7 +13,7 @@ const Post = (props: Props) => {
   const postImages = post?.images?.image
     ? JSON.parse(`${post?.images?.image}`)
     : '';
-  const linkTo = `/chi-tiet/${formatVietnameseToString(post.title)}/${post.id}`;
+  const linkTo = `/chi-tiet/${post.id}`;
   return (
     <div
       className={`w-full md:flex py-[15px] gap-[15px] border border-l-0 border-r-0 ${
@@ -63,7 +62,9 @@ const Post = (props: Props) => {
           <span className="text-[#16c784] font-bold text-[16.8px]">
             {post.attributes?.price}
           </span>
-          <span className="text-[14px] text-[#333]">35m²</span>
+          <span className="text-[14px] text-[#333]">
+            {post.attributes.acreage.replace('m2', '')}m²
+          </span>
           <span className="text-[14px] text-[#333] ">{post.address}</span>
         </div>
         <div className="text-[14px] text-[#8a8d91] mt-[20px] limit-text-length">

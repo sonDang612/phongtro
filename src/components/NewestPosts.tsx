@@ -1,7 +1,5 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useNewestPosts from 'src/react-query/useNewestPosts';
-import { formatVietnameseToString } from 'src/utils/formatVietnameseToString';
 
 const NewestPosts = () => {
   const { data: posts } = useNewestPosts();
@@ -12,12 +10,7 @@ const NewestPosts = () => {
       {posts?.map((post, index) => (
         <div
           key={index}
-          onClick={() =>
-            navigate(
-              `/chi-tiet/${formatVietnameseToString(post.title)}/${post.id}`,
-              { replace: true }
-            )
-          }
+          onClick={() => navigate(`/chi-tiet/${post.id}`)}
           className={`flex flex-col items-center lg:flex-row py-[10px] gap-[15px] border-t-[#eee] border-solid ${
             index === 0 ? 'border-t-[0px]' : 'border-t-[1px]'
           }`}

@@ -1,6 +1,6 @@
 import { Carousel } from 'antd';
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { NewestPosts, Post } from 'src/components';
 import usePost from 'src/react-query/usePost';
 import usePostsByCategory from 'src/react-query/usePostsByCategory';
@@ -32,6 +32,11 @@ const PostDetails = () => {
   const postImages = post?.images?.image
     ? JSON.parse(`${post?.images?.image}`)
     : [];
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <div className="flex flex-row w-full gap-[20px]">
       <div className="w-[65%]">
