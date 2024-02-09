@@ -4,6 +4,7 @@ const queryKeys = {
   useMyPosts: 'useMyPosts',
   usePost: 'usePost',
   usePostsLimit: 'usePostsLimit',
+  usePostsByCategory: 'usePostsByCategory',
   useCategories: 'useCategories',
   usePrices: 'usePrices',
   useCategoryByCode: 'useCategoryByCode',

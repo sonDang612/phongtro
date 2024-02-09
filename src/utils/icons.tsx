@@ -13,6 +13,9 @@ import { MdOutlineHouseSiding, MdOutlineLibraryBooks } from 'react-icons/md';
 import { FiSearch } from 'react-icons/fi';
 import { ImPencil2, ImBin } from 'react-icons/im';
 import { BiUserPin } from 'react-icons/bi';
+import { FaRegMessage, FaRegClock, FaPhone } from 'react-icons/fa6';
+import { CiHashtag, CiFlag1 } from 'react-icons/ci';
+import { TbChartAreaLine } from 'react-icons/tb';
 
 const icons = {
   AiOutlinePlusCircle,
@@ -29,6 +32,7 @@ const icons = {
   BsBookmarkStarFill,
   GrLinkNext,
   GrLinkPrevious,
+  CiHashtag,
   ImPencil2,
   MdOutlineLibraryBooks,
   BiUserPin,
@@ -36,6 +40,11 @@ const icons = {
   BsChevronDown,
   ImBin,
   BsCameraFill,
+  FaPhone,
+  FaRegMessage,
+  FaRegClock,
+  TbChartAreaLine,
+  CiFlag1,
 };
 
 export default icons;

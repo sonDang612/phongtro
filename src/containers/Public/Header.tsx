@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import useCurrentUser from 'src/react-query/useCurrentUser';
 import menuManagements from 'src/utils/menuManagements';
-import logo from '../../assets/logowithoutbg.png';
 import { Button } from '../../components';
 import * as actions from '../../store/actions/auth';
 import { paths } from '../../utils/constants';
@@ -27,7 +26,7 @@ const Header = () => {
     <div className="w-3/4 flex items-center justify-between">
       <Link to="/">
         <img
-          src={logo}
+          src={'/logowithoutbg.png'}
           alt="logo"
           className="w-[240px] h-[70px] object-contain"
         />

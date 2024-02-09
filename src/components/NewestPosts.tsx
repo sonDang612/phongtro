@@ -1,15 +1,23 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useNewestPosts from 'src/react-query/useNewestPosts';
+import { formatVietnameseToString } from 'src/utils/formatVietnameseToString';
 
 const NewestPosts = () => {
   const { data: posts } = useNewestPosts();
-
+  const navigate = useNavigate();
   return (
     <div className="rounded-md bg-white w-full p-[20px] flex gap-[10px] flex-col">
       <span className="font-bold text-[18.2px] text-[#333]">Tin mới đăng</span>
       {posts?.map((post, index) => (
         <div
           key={index}
+          onClick={() =>
+            navigate(
+              `/chi-tiet/${formatVietnameseToString(post.title)}/${post.id}`,
+              { replace: true }
+            )
+          }
           className={`flex flex-col items-center lg:flex-row py-[10px] gap-[15px] border-t-[#eee] border-solid ${
             index === 0 ? 'border-t-[0px]' : 'border-t-[1px]'
           }`}
@@ -30,7 +38,7 @@ const NewestPosts = () => {
               <p className="text-[14px] text-[#16c784] font-bold">
                 {post.attributes?.price}
               </p>
-              <p className="text-[12.6px] text-[#aaa]">14 giờ trước</p>
+              {/* <p className="text-[12.6px] text-[#aaa]">14 giờ trước</p> */}
             </div>
           </div>
         </div>

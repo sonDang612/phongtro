@@ -2,7 +2,7 @@ import React from 'react';
 
 const ContactUs = () => {
   return (
-    <div className="w-3/4 mb-[20px] shadow-md rounded-md mt-[20px]">
+    <div className="shadow-md rounded-md mt-[30px] w-full">
       <div className=" w-full">
         <div className="bg-white flex p-[30px] border-dashed  border-[7px] border-[#e8eefc] flex-col">
           <div className="flex items-center flex-col">
