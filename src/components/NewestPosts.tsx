@@ -15,17 +15,20 @@ const NewestPosts = () => {
           }`}
         >
           <img
-            src={JSON.parse(`${post.images.image}`)[0]}
+            src={
+              post?.images?.image ? JSON.parse(`${post?.images?.image}`)[0] : ''
+            }
             alt="post"
             className="size-[65px] cursor-pointer rounded-md"
           />
+
           <div className="w-4/5">
             <p className="text-[14px] text-[#1266dd] leading-[18.2px] cursor-pointer limit-text-title-length">
               {post.title}
             </p>
             <div className="flex flex-col lg:flex-row items-center justify-between mt-[10px]">
               <p className="text-[14px] text-[#16c784] font-bold">
-                {post.attributes.price}
+                {post.attributes?.price}
               </p>
               <p className="text-[12.6px] text-[#aaa]">14 giờ trước</p>
             </div>

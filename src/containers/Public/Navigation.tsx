@@ -2,11 +2,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import useCategories from 'src/react-query/useCategories';
 
-const Navigation = () => {
+const Navigation = ({ isAdmin = false }: { isAdmin?: boolean }) => {
   const { data: categories } = useCategories();
 
   return (
-    <div className="w-full flex justify-center items-center h-[40px] text-white bg-secondary1 sticky-header">
+    <div
+      className={`w-full flex ${
+        isAdmin ? 'justify-start' : 'justify-center'
+      } items-center h-[40px] text-white bg-secondary1 sticky-header`}
+    >
       <div className="w-3/4 flex flex-row">
         <NavLink
           to={'/'}

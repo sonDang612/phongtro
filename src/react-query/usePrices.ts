@@ -4,7 +4,7 @@ import { Price } from 'src/types';
 import queryKeys from './queryKey';
 
 const fetchPrices = async () => {
-  const response = await axiosInstance.get('/api/v1/prices');
+  const response = await axiosInstance.get('/api/v1/price/all');
   return response?.data.response;
 };
 

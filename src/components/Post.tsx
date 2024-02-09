@@ -11,9 +11,10 @@ type Props = {
 const Post = (props: Props) => {
   const { post, index } = props;
   const [isOverHeart, setIsOverHeart] = React.useState(false);
-  const postImages = JSON.parse(`${post.images.image}`);
+  const postImages = post?.images?.image
+    ? JSON.parse(`${post?.images?.image}`)
+    : '';
   const linkTo = `/chi-tiet/${formatVietnameseToString(post.title)}/${post.id}`;
-
   return (
     <div
       className={`w-full md:flex py-[15px] gap-[15px] border border-l-0 border-r-0 ${
@@ -60,7 +61,7 @@ const Post = (props: Props) => {
 
         <div className="items-center gap-[20px] flex flex-col md:flex-row text-ellipsis whitespace-nowrap overflow-hidden mt-[10px]">
           <span className="text-[#16c784] font-bold text-[16.8px]">
-            {post.attributes.price}
+            {post.attributes?.price}
           </span>
           <span className="text-[14px] text-[#333]">35m²</span>
           <span className="text-[14px] text-[#333] ">{post.address}</span>
@@ -75,14 +76,14 @@ const Post = (props: Props) => {
               alt="avatar"
               className="size-[30px] rounded-full"
             />
-            <p className="text-[14px] text-[#8a8d91]">{post.user.name}</p>
+            <p className="text-[14px] text-[#8a8d91]">{post.user?.name}</p>
           </div>
           <div className="flex gap-[5px] flex-col md:flex-row">
             <button
               type="button"
               className="bg-[#1266dd] text-white px-[7px] py-[3px] rounded-md text-[14px]"
             >
-              Gọi {post.user.phone}
+              Gọi {post.user?.phone}
             </button>
             <button
               type="button"

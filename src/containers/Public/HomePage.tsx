@@ -15,7 +15,6 @@ const HomePage = () => {
   const { data: categories } = useCategories();
   const { data: prices } = usePrices();
   const { data: areas } = useAreas();
-
   return (
     <div className="w-full flex flex-col gap-3">
       <Search />

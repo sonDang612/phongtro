@@ -7,11 +7,11 @@ export type Post = {
   attributes: {
     acreage: string;
     hashtag: string;
-    price: string;
+    price?: string;
     published: string;
   };
-  images: {
-    image: string[];
+  images?: {
+    image?: string[];
   };
   user: {
     name: string;

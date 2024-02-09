@@ -1,6 +1,8 @@
 const queryKeys = {
   usePosts: 'usePosts',
   useNewestPosts: 'useNewestPosts',
+  useMyPosts: 'useMyPosts',
+  usePost: 'usePost',
   usePostsLimit: 'usePostsLimit',
   useCategories: 'useCategories',
   usePrices: 'usePrices',
@@ -11,6 +13,8 @@ const queryKeys = {
   useProvinceByCode: 'useProvinceByCode',
   useAreas: 'useAreas',
   useProvinces: 'useProvinces',
+  useVietNamProvinces: 'useVietNamProvinces',
+  useVietNamDistrictsByProvinceId: 'useVietNamDistrictsByProvinceId',
 };
 
 export default queryKeys;

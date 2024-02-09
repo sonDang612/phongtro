@@ -10,12 +10,12 @@ const InputForm = (props: Props) => {
   const { label, value, keyPayload, setValue, type } = props;
   return (
     <div>
-      <label htmlFor="phone" className="text-sx">
+      <label htmlFor={keyPayload} className="text-sx">
         {label}
       </label>
       <input
         type={type || 'text'}
-        id="phone"
+        id={keyPayload}
         className="outline-none bg-[#e8f0fe] p-2 rounded-md w-full"
         value={value}
         onChange={(e) =>
